@@ -1,0 +1,3 @@
+[submodule "bmw512_hash"]
+	path = bmw512_hash
+	url = http://github.com/barrystyle/bmw512_hash

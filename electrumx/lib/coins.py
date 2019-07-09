@@ -1438,6 +1438,32 @@ class Peercoin(Coin):
     VALUE_PER_COIN = 1000000
 
 
+class DigitalNote(Coin):
+    NAME = "DigitalNote"
+    SHORTNAME = "XDN"
+    NET = "mainnet"
+    P2PKH_VERBYTE = bytes.fromhex("5A")
+    P2SH_VERBYTES = [bytes.fromhex("8C")]
+    WIF_BYTE = bytes.fromhex("8E")
+    GENESIS_HASH = ('00000d8e7d39218c4c02132e95a3896d'
+                    '46939b9b95624cf9dd2b0b794e6c216a')
+    DESERIALIZER = lib_tx.DeserializerTxTime
+    DAEMON = daemon.LegacyRPCDaemon
+    ESTIMATE_FEE = 0.01
+    RELAY_FEE = 0.01
+    TX_COUNT = 106515
+    TX_COUNT_HEIGHT = 66355
+    TX_PER_BLOCK = 1.6
+    RPC_PORT = 18094
+    REORG_LIMIT = 5000
+
+    @classmethod
+    def header_hash(cls, header):
+        '''Given a header return the hash.'''
+        import bmw512_hash
+        return bmw512_hash.getPoWHash(header)
+
+
 class PeercoinTestnet(Peercoin):
     NAME = "PeercoinTestnet"
     SHORTNAME = "tPPC"
